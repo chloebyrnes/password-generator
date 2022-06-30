@@ -17,35 +17,45 @@ function getRandomItem(list) {
 
 //initial prompt to enter length
 function generatePassword() {
-  var userInput = window.prompt("How long would you like your password to be?")
-  var passwordLength = parseInt(userInput)
-  if (isNaN(passwordLength)) {
-    window.alert("Please enter a number.")
-    return
-  } 
 
-  if (passwordLength < 8 || passwordLength > 128) {
-  window.alert("Password length must be between 8 and 128 characters")
-  return
-  } 
+  while (true) {
+
+    var userInput = window.prompt("How long would you like your password to be?")
+
+//user canceled password generator
+    if (userInput === null) {
+      return
+    }
+
+    var passwordLength = parseInt(userInput)
+
+    if (isNaN(passwordLength)) {
+      window.alert("Please enter a number.")
+    } else if (passwordLength < 8 || passwordLength > 128) {
+      window.alert("Password length must be between 8 and 128 characters.")
+    } else {
+      break
+    }
+
+  }
+
   //confirmation if user wants numbers, symbols, lowercase or uppercase letters
-  var userwantsNumbers = window.confirm("Would you like to include numbers in your password?")
-  var userwantsSymbols = window.confirm("Would you like to include symbols in your password?")
-  var userwantsLowercase = window.confirm("Would you like to include lowercase letters in your password?")
-  var userwantsUppercase = window.confirm("Would you like to include uppercase letters in your password?")
+  var userWantsNumbers = window.confirm("Would you like to include numbers in your password?")
+  var userWantsSymbols = window.confirm("Would you like to include symbols in your password?")
+  var userWantsLowercase = window.confirm("Would you like to include lowercase letters in your password?")
+  var userWantsUppercase = window.confirm("Would you like to include uppercase letters in your password?")
 
   var numberList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
   var symbolList = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"]
   var lowercaseList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-  var uppercaselist = []
+  var uppercaseList = []
 
   var optionsCart = []
 
-  //written to create uppercase letters  
-  for (var i = 0; i <lowercaseList.length; i++) {
-    uppercaseList[i] = lowercaseList[i].toUpperCase()
+  for (var i = 0; i < lowercaseList.length; i++) {
+    uppercaseList[i] - lowercaseList[i].toUpperCase()
   }
-  
+
   if (userWantsNumbers === true) {
     optionsCart.push(numberList)
   }
@@ -61,7 +71,7 @@ function generatePassword() {
 
   //if no options are chosen
   if (optionsCart.length === 0) {
-    optionsCart.push(lowercaselist)
+    optionsCart.push(lowercaseList)
   }
 
   var generatedPassword = ""
@@ -72,9 +82,7 @@ function generatePassword() {
     generatedPassword += randomChar
   }
 
-  console.log(generatedPassword)
   return generatedPassword
-
 }
 
 // Write password to the #password input
@@ -82,7 +90,9 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
+  if (password) {
   passwordText.value = password;
+  }
 
 }
 
