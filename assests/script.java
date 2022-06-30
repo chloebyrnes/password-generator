@@ -1,6 +1,20 @@
 // Assignment code here
 var generateBtn = document.querySelector("generate");
 
+//getting a random item from list
+function randomInt(min, max) {
+  if (!max) {
+    max = min
+    min = 0
+  }
+  var rand = Math.random()
+  return Math.floor(min*(1 - rand) + rand*max)
+}
+
+function getRandomItem(list) {
+  return list[randomInt(list.length)]
+}
+
 //initial prompt to enter length
 function generatePassword() {
   var userInput = window.prompt("How long would you like your password to be?")
@@ -27,7 +41,7 @@ function generatePassword() {
 
   var optionsCart = []
 
-//written to create uppercase letters  
+  //written to create uppercase letters  
   for (var i = 0; i <lowercaseList.length; i++) {
     uppercaseList[i] = lowercaseList[i].toUpperCase()
   }
@@ -45,7 +59,12 @@ function generatePassword() {
     optionsCart.push(uppercaseList)
   }
 
+  var generatedPassword = ""
 
+  for (var i = 0; i < passwordLength; i++) {
+    var randomList = getRandomItem(optionsCart)
+    var randomChar = getRandomItem(randomList)
+  }
 
 }
 
