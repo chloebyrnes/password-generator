@@ -1,5 +1,5 @@
 // Assignment code here
-var generateBtn = document.querySelector("generate");
+var generateBtn = document.querySelector("#generate");
 
 //getting a random item from list
 function randomInt(min, max) {
@@ -59,12 +59,21 @@ function generatePassword() {
     optionsCart.push(uppercaseList)
   }
 
+  //if no options are chosen
+  if (optionsCart.length === 0) {
+    optionsCart.push(lowercaselist)
+  }
+
   var generatedPassword = ""
 
   for (var i = 0; i < passwordLength; i++) {
     var randomList = getRandomItem(optionsCart)
     var randomChar = getRandomItem(randomList)
+    generatedPassword += randomChar
   }
+
+  console.log(generatedPassword)
+  return generatedPassword
 
 }
 
