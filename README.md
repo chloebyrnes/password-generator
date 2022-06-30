@@ -1,5 +1,5 @@
 # Password Generator
-Created with started code provided. Added in the Javascript portion to make the generator workable. 
+Created with starter code provided. Added in the Javascript portion to make the generator workable. 
 
 # Built With
 JavaScript, HTML, CSS
